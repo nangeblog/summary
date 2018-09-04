@@ -1,0 +1,34 @@
+Socket sock = sf.createSocket(context);
+            sock.setSoTimeout(socketConfig.getSoTimeout());
+            sock.setReuseAddress(socketConfig.isSoReuseAddress());
+            sock.setTcpNoDelay(socketConfig.isTcpNoDelay());
+            sock.setKeepAlive(socketConfig.isSoKeepAlive());
+            if (socketConfig.getRcvBufSize() > 0) {
+                sock.setReceiveBufferSize(socketConfig.getRcvBufSize());
+            }
+            if (socketConfig.getSndBufSize() > 0) {
+                sock.setSendBufferSize(socketConfig.getSndBufSize());
+            }
+
+            final int linger = socketConfig.getSoLinger();
+            if (linger >= 0) {
+                sock.setSoLinger(true, linger);
+            }
+
+ final Socket sock = socket != null ? socket : createSocket(context);
+        if (localAddress != null) {
+            sock.bind(localAddress);
+        }
+        try {
+            sock.connect(remoteAddress, connectTimeout);
+            
+
+org.apache.http.conn.HttpHostConnectException
+
+java.net.ConnectException: Connection timed out: connect
+
+java.net.UnknownHostException: xxx
+
+org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
+
+java.net.SocketTimeoutException: Read timed out
